@@ -75,6 +75,42 @@ export class Changelly {
   }
 
   /**
+   * Returns fix rate for target pairs associate with rateId that can be used for 2 minutes
+   * @param {Array<{from:string, to:string}>} pairs
+   * @returns {Promise<Array<{ id: string, result: string, from: string, to: string, max: string, maxFrom: string, maxTo: string, min: string, minFrom: string, minTo: string }>>} 
+   */
+  async getFixRate(pairs) {
+    return await this.postAPI('getFixRate', pairs)
+  }
+
+  /**
+   * Returns rate for all available currency pairs associate with rateId that can be used for 2 minutes
+   * @returns {Promise<Array<{ id: string, result: string, from: string, to: string, max: string, maxFrom: string, maxTo: string, min: string, minFrom: string, minTo: string }>>} 
+   */
+  async getFixRateBulk() {
+    return await this.postAPI('getFixRateBulk')
+  }
+
+  /**
+   * Create fix rate transaction. Only provide one of (amountFrom, amountTo)
+   * @param {string} from 
+   * @param {string} to 
+   * @param {string} address 
+   * @param {string} rateId 
+   * @param {string} refundAddress 
+   * @param {string} amountFrom 
+   * @param {string} amountTo
+   * @returns {Promise<{ id: string, apiExtraFee: string, changellyFee: string, payinExtraId: string|null, refundAddress: string, amountExpectedFrom: string, amountExpectedTo: string, kycRequired: boolean, payTill: string, status: string, currencyFrom: string, currencyTo: string, amountTo: 0, payinAddress: string, payoutAddress: string, createdAt: string }>} 
+   */
+  async createFixTransaction(from, to, address, rateId, refundAddress, amountFrom=null, amountTo=null) {
+    if (amountFrom && amountTo) throw new Error('Only specify one of amountTo or amountFrom')
+    const params = (amountFrom)
+      ? { from ,to, address, amountFrom,  rateId, refundAddress } 
+      : { from ,to, address, amountTo,    rateId, refundAddress }
+    return await this.postAPI('createFixTransaction', params)
+  }
+
+  /**
    * Returns status of a given transaction using a transaction ID provided.
    * @param {string} id 
    * @returns {Promise<string>}
