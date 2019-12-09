@@ -10,8 +10,17 @@ export const request = async (method, params, apiKey, apiSecret) => {
     headers: headers,
     body: JSON.stringify(message)
   })
-  const jsonRes = await res.json()
-  return jsonRes.result
+  
+  if (res.status !== 200) {
+    let text = await res.text();
+    throw text;
+  }
+  else {
+    let jsonRes = await res.json();
+    if(jsonRes.error) throw jsonRes.error
+    
+    return jsonRes.result;
+  }
 }
 
 const constructMessage = (method, params) => {
