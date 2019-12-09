@@ -10,7 +10,7 @@ export class Changelly {
 
   /**
    * Returns a list of enabled currencies as a flat array.
-   * @returns {Prmose<Array<string>>}
+   * @returns {Promise<Array<string>>}
    */
   async getCurrencies() {
     return await this.postAPI('getCurrencies')
