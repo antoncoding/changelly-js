@@ -1,7 +1,6 @@
 # ChangellyJS
 
-![version](https://img.shields.io/npm/v/changelly-js)
-
+![version](https://img.shields.io/npm/v/changelly-js) ![license](https://img.shields.io/npm/l/changelly-js) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/changelly-js) 
 
 Javascript API SDK for [changelly](https://changelly.com/?ref_id=oz145mh990w1b4wr) cryptocurrency exchange service. For more detail about this API, visit the [official document](https://old.changelly.com/developers).
 
