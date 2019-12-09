@@ -1,6 +1,6 @@
 {
   "name": "changelly-js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "JavaScript SDK for changelly api",
   "main": "lib/index.js",
   "scripts": {
