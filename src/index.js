@@ -38,6 +38,15 @@ export class Changelly {
   }
 
   /**
+   * Fetch minimal and maximal amount for current pair.
+   * @param {Array<{from:string, to:string}>} pairs
+   * @returns {Promise<Array<{ from: string, to: string, minAmountFloat: string, maxAmountFloat:string, minAmountFixed:string, maxAmountFixed:string }>> }
+   */
+  async getPairsParams(pairs) {
+    return await this.postAPI('getPairsParams', pairs)
+  }
+
+  /**
    * Returns estimated exchange value with your API partner fee included.
    * @param {string} from 
    * @param {string} to 
@@ -77,10 +86,20 @@ export class Changelly {
   /**
    * Returns fix rate for target pairs associate with rateId that can be used for 2 minutes
    * @param {Array<{from:string, to:string}>} pairs
-   * @returns {Promise<Array<{ id: string, result: string, from: string, to: string, max: string, maxFrom: string, maxTo: string, min: string, minFrom: string, minTo: string }>>} 
+   * @returns {Promise<Array<{ id: string,  result: string, from: string, to: string, 
+   *                           max: string, maxFrom: string, maxTo: string, min: string, minFrom: string, minTo: string }>>} 
    */
   async getFixRate(pairs) {
     return await this.postAPI('getFixRate', pairs)
+  }
+
+  /**
+   * Returns fix rate for target pairs associate with rateId that can be used for 30 seconds
+   * @param {Array<{from:string, to:string, amountFrom:string}>} pairs
+   * @returns {Promise<Array<{ id:string, rate:string, from:string, to:string, amountFrom:string, amountTo:string }>>}
+   */
+  async getFixRateForAmount(pairs) {
+    return await this.postAPI('getFixRateForAmount', pairs)
   }
 
   /**

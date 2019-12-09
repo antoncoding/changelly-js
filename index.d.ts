@@ -19,6 +19,11 @@ declare module 'changelly-js' {
     getMinAmount(from:string, to:string):Promise<string>
 
     /**
+     * [NEW] Fetch minimal and maximal amount for current pair.
+     */
+    getPairsParams(pairs: Array<{from:string, to:string}>): Promise<Array<{ from: string, to: string, minAmountFloat: string, maxAmountFloat:string, minAmountFixed:string, maxAmountFixed:string }>> 
+
+    /**
      * Returns estimated exchange value with your API partner fee included.
      */
     getExchangeAmount(from:string, to:string, amount:string):Promise<string>
@@ -37,6 +42,12 @@ declare module 'changelly-js' {
      * Returns fix rate for target pairs associate with rateId that can be used for 2 minutes
      */ 
     getFixRate(pairs: Array<{ from:string, to:string}> ): Promise<Array<{ id: string, result: string, from: string, to: string, max: string, maxFrom: string, maxTo: string, min: string, minFrom: string, minTo: string }>>
+
+    /**
+     * [NEW] Returns fix rate for target pairs associate with rateId that can be used for 30 seconds.
+     * Also fetch fixed amount according to additional parameter field `amountFrom`.
+     */
+    getFixRateForAmount(pair: Array<{from:string, to:string, amountFrom:string}>) : Promise<Array<{ id:string, rate:string, from:string, to:string, amountFrom:string, amountTo:string }>>
 
     /**
      * Returns rate for all available currency pairs associate with rateId that can be used for 2 minutes
