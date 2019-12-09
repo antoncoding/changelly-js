@@ -8,8 +8,7 @@ declare module 'changelly-js' {
     getCurrencies():Promise<Array<string>>
 
     /**
-     * Returns a full list of currencies as an array of objects. 
-     * Each object has an "enabled" field displaying current availability of a coin.
+     * Returns a full list of currencies as an array of objects. Each object has an "enabled" field displaying current availability of a coin.
      */
     getCurrenciesFull():Promise<Array<{name:string, ticker:string, fullName:string, enabled:boolean, fixRateEnabled:boolean, payingConfirmations:number, extraIdName: string| null, addressUrl:string, transactionUrl:string, image:string, fixedTime:number}>>
 
@@ -30,8 +29,7 @@ declare module 'changelly-js' {
     validateAddress(currency:string, address:string):Promise<{result: boolean}>
 
     /**
-     * Creates a new transaction, generates a pay-in address and 
-     * returns Transaction object with an ID field to track a transaction status.
+     * Creates a new transaction, generates a pay-in address and returns Transaction object with an ID field to track a transaction status.
      */
     createTransaction(from:string, to:string, address:string, amount: string):Promise<{ id: string, apiExtraFee: string, changellyFee: string, payinExtraId: string|null, amountExpectedFrom: string,status: string,currencyFrom: string,currencyTo: string,amountTo: number,amountExpectedTo: string,payinAddress: string,payoutAddress: string,createdAt: string,kycRequired: boolean }> 
 
