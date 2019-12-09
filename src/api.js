@@ -1,5 +1,4 @@
 import { signMessage } from './sign'
-import "isomorphic-fetch"
 
 export const request = async (method, params, apiKey, apiSecret) => {
   const message = constructMessage(method, params)
