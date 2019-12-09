@@ -1,5 +1,5 @@
 {
-  "name": "changellyjs",
+  "name": "changelly-js",
   "version": "1.0.0",
   "description": "JavaScript SDK for changelly api",
   "main": "index.js",
@@ -13,5 +13,9 @@
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "node-fetch": "^2.6.0"
+  },
+  "dependencies": {
+    "es6-promise": "^4.2.8",
+    "isomorphic-fetch": "^2.2.1"
   }
 }
