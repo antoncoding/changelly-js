@@ -34,6 +34,21 @@ declare module 'changelly-js' {
     createTransaction(from:string, to:string, address:string, amount: string):Promise<{ id: string, apiExtraFee: string, changellyFee: string, payinExtraId: string|null, amountExpectedFrom: string,status: string,currencyFrom: string,currencyTo: string,amountTo: number,amountExpectedTo: string,payinAddress: string,payoutAddress: string,createdAt: string,kycRequired: boolean }> 
 
     /**
+     * Returns fix rate for target pairs associate with rateId that can be used for 2 minutes
+     */ 
+    getFixRate(pairs: Array<{ from:string, to:string}> ): Promise<Array<{ id: string, result: string, from: string, to: string, max: string, maxFrom: string, maxTo: string, min: string, minFrom: string, minTo: string }>>
+
+    /**
+     * Returns rate for all available currency pairs associate with rateId that can be used for 2 minutes
+     */
+    getFixRateBulk():Promise<Array<{ id: string, result: string, from: string, to: string, max: string, maxFrom: string, maxTo: string, min: string, minFrom: string, minTo: string }>>
+
+    /**
+     * Create fix rate transaction. Only provide one of (amountFrom, amountTo)
+     */
+    createFixTransaction(from: string, to:string, address: string, rateId:string, refundAddress:string, amountFrom?:string, amountTo?:string): Promise<{ id: string, apiExtraFee: string, changellyFee: string, payinExtraId: string|null, refundAddress: string, amountExpectedFrom: string, amountExpectedTo: string, kycRequired: boolean, payTill: string, status: string, currencyFrom: string, currencyTo: string, amountTo: 0, payinAddress: string, payoutAddress: string, createdAt: string }>
+
+    /**
      * Returns status of a given transaction using a transaction ID provided.
      */
     getStatus(id:string): Promise<string>
