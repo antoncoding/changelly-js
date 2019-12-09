@@ -1,5 +1,5 @@
 import { signMessage } from './sign'
-const fetch = require('node-fetch')
+import "isomorphic-fetch"
 
 export const request = async (method, params, apiKey, apiSecret) => {
   const message = constructMessage(method, params)
