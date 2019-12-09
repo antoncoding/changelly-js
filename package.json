@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel --presets es2015 -d lib/ src"
   },
-  "author": "",
+  "author": "antonassocareer@gmail.com",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
