@@ -4,19 +4,18 @@ const fetch = require('node-fetch')
 export const request = async (method, params, apiKey, apiSecret) => {
   const message = constructMessage(method, params)
   const headers = getHeaders(apiKey, apiSecret, message)
-  const uri = 'http://api.changelly.com'
-  console.log(message)
+  const uri = 'https://api.changelly.com'
   const res = await fetch(uri, {
     method: 'POST',
-    body: message,
-    headers
+    headers: headers,
+    body: JSON.stringify(message)
   })
-  console.log(res)
-  return await res.json()
+  const jsonRes = await res.json()
+  return jsonRes.result
 }
 
 const constructMessage = (method, params) => {
-  const id = Date.now() // use date.now as unique id for each request
+  const id = Date.now().toString() // use date.now as unique id for each request
   const message = {
     jsonrpc: "2.0",
     id,
@@ -33,6 +32,5 @@ const getHeaders = (apiKey, apiSecret, message) => {
     'api-key': apiKey,
     'sign': sign
   }
-  console.log(headers)
   return headers
 }
