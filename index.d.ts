@@ -36,7 +36,7 @@ declare module 'changelly-js' {
     /**
      * Creates a new transaction, generates a pay-in address and returns Transaction object with an ID field to track a transaction status.
      */
-    createTransaction(from:string, to:string, address:string, amount: string):Promise<{ id: string, apiExtraFee: string, changellyFee: string, payinExtraId: string|null, amountExpectedFrom: string,status: string,currencyFrom: string,currencyTo: string,amountTo: number,amountExpectedTo: string,payinAddress: string,payoutAddress: string,createdAt: string,kycRequired: boolean }> 
+    createTransaction(from:string, to:string, address:string, amount: string, extraId?: string, refundAddress?: string, refundExtraId?:string):Promise<{ id: string, apiExtraFee: string, changellyFee: string, payinExtraId: string|null, amountExpectedFrom: string,status: string,currencyFrom: string,currencyTo: string,amountTo: number,amountExpectedTo: string,payinAddress: string,payoutAddress: string,createdAt: string,kycRequired: boolean }> 
 
     /**
      * Returns fix rate for target pairs associate with rateId that can be used for 2 minutes

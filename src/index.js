@@ -76,10 +76,13 @@ export class Changelly {
    * @param {string} to 
    * @param {string} address 
    * @param {string} amount 
-   * @returns {Promise<{ id: string, apiExtraFee: string, changellyFee: string, payinExtraId: string|null, amountExpectedFrom: string,status: string,currencyFrom: string,currencyTo: string,amountTo: number,amountExpectedTo: string,payinAddress: string,payoutAddress: string,createdAt: string,kycRequired: boolean }> }
+   * @param {string} extraId
+   * @param {string} refundAddress
+   * @param {string} refundExtraId
+   * @returns {Promise<{ id: string, apiExtraFee: string, changellyFee: string, payinExtraId: string|null, amountExpectedFrom: string,status: string,currencyFrom: string,currencyTo: string,amountTo: number, amountExpectedTo: string, payinAddress: string, payoutAddress: string, createdAt: string, kycRequired: boolean }> }
    */
-  async createTransaction(from, to, address, amount) {
-    const params = { from, to, address, amount }
+  async createTransaction(from, to, address, amount, extraId=null, refundAddress=null, refundExtraId=null) {
+    const params = { from, to, address, amount, extraId, refundAddress, refundExtraId }
     return await this.postAPI('createTransaction', params)
   }
 
