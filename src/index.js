@@ -47,15 +47,12 @@ export class Changelly {
   }
 
   /**
-   * Returns estimated exchange value with your API partner fee included.
-   * @param {string} from 
-   * @param {string} to 
-   * @param {string} amount 
-   * @returns {Promise<string>}
+   * Returns estimated exchange values with your API partner fee included.
+   * @param {Array<{from:string, to: string, amount: string}>} pairs
+   * @returns {Promise<Array<string>>}
    */
-  async getExchangeAmount(from, to, amount) {
-    const params = { from, to, amount }
-    return await this.postAPI('getExchangeAmount', params)
+  async getExchangeAmount(pairs) {
+    return await this.postAPI('getExchangeAmount', pairs)
   }
 
   /**
@@ -122,13 +119,15 @@ export class Changelly {
    * @param {string} refundAddress 
    * @param {string} amountFrom 
    * @param {string} amountTo
+   * @param {string} extraId
+   * @param {string} refundExtraId
    * @returns {Promise<{ id: string, apiExtraFee: string, changellyFee: string, payinExtraId: string|null, refundAddress: string, amountExpectedFrom: string, amountExpectedTo: string, kycRequired: boolean, payTill: string, status: string, currencyFrom: string, currencyTo: string, amountTo: 0, payinAddress: string, payoutAddress: string, createdAt: string }>} 
    */
-  async createFixTransaction(from, to, address, rateId, refundAddress, amountFrom=null, amountTo=null) {
+  async createFixTransaction(from, to, address, rateId, refundAddress, amountFrom=null, amountTo=null, extraId=null, refundExtraId=null) {
     if (amountFrom && amountTo) throw new Error('Only specify one of amountTo or amountFrom')
     const params = (amountFrom)
-      ? { from ,to, address, amountFrom,  rateId, refundAddress } 
-      : { from ,to, address, amountTo,    rateId, refundAddress }
+      ? { from, to, address, amountFrom,  rateId, refundAddress, extraId, refundExtraId } 
+      : { from, to, address, amountTo,    rateId, refundAddress, extraId, refundExtraId }
     return await this.postAPI('createFixTransaction', params)
   }
 

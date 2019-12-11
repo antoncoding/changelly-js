@@ -24,9 +24,9 @@ declare module 'changelly-js' {
     getPairsParams(pairs: Array<{from:string, to:string}>): Promise<Array<{ from: string, to: string, minAmountFloat: string, maxAmountFloat:string, minAmountFixed:string, maxAmountFixed:string }>> 
 
     /**
-     * Returns estimated exchange value with your API partner fee included.
+     * Returns estimated exchange values with your API partner fee included.
      */
-    getExchangeAmount(from:string, to:string, amount:string):Promise<string>
+    getExchangeAmount(paris:Array<{from:string, to:string, amount:string}>):Promise<Array<string>>
 
     /**
      * Returns if a given address is valid or not for a given currency.
@@ -57,7 +57,9 @@ declare module 'changelly-js' {
     /**
      * Create fix rate transaction. Only provide one of (amountFrom, amountTo)
      */
-    createFixTransaction(from: string, to:string, address: string, rateId:string, refundAddress:string, amountFrom?:string, amountTo?:string): Promise<{ id: string, apiExtraFee: string, changellyFee: string, payinExtraId: string|null, refundAddress: string, amountExpectedFrom: string, amountExpectedTo: string, kycRequired: boolean, payTill: string, status: string, currencyFrom: string, currencyTo: string, amountTo: 0, payinAddress: string, payoutAddress: string, createdAt: string }>
+    createFixTransaction(from: string, to:string, address: string, rateId:string, refundAddress:string, 
+      amountFrom?:string, amountTo?:string, extraId?:string, refundExtraId?:string)
+      : Promise<{ id: string, apiExtraFee: string, changellyFee: string, payinExtraId: string|null, refundAddress: string, amountExpectedFrom: string, amountExpectedTo: string, kycRequired: boolean, payTill: string, status: string, currencyFrom: string, currencyTo: string, amountTo: 0, payinAddress: string, payoutAddress: string, createdAt: string }>
 
     /**
      * Returns status of a given transaction using a transaction ID provided.
