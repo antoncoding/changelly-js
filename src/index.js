@@ -143,10 +143,11 @@ export class Changelly {
 
   /**
    * Returns an array of all transactions or a filtered list of transactions
+   * @param {{currency?: string, address?: string, extraId?: string, limit?: number, offset?:number}}
    * @returns {Promise<Promise<Array<{ id: string, createdAt: number, type: string, moneyReceived: number, moneySent: number, rate: string, payinConfirmations: string, status: string, currencyFrom: string, currencyTo: string, payinAddress: string, payinExtraId: null|string, payinExtraIdName: null|string, payinHash: null|string, amountExpectedFrom: string, payoutAddress: string, payoutExtraId: null|string, payoutExtraIdName: null|string, payoutHash: null|string, refundHash: null|string, amountFrom: string, amountTo: string, amountExpectedTo: string, networkFee: string, changellyFee: string, apiExtraFee: string, totalFee: null|string, fiatProviderId: null|string, fiatProvider: null|string, fiatProviderRedirect: null|string }>>>}
    */
-  async getTransactions() {
-    return await this.postAPI('getTransactions')
+  async getTransactions(filter) {
+    return await this.postAPI('getTransactions', filter)
   }
 
   /**
