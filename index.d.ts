@@ -1,6 +1,6 @@
 declare module 'changelly-js' {
   class Changelly {
-    constructor(apiKey:string, apiSecret:string)
+    constructor(apiKey:string, apiSecret:string, uri?:string)
 
     /**
      * Returns a list of enabled currencies as a flat array.

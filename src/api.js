@@ -1,9 +1,8 @@
 import { signMessage } from './sign'
 
-export const request = async (method, params, apiKey, apiSecret) => {
+export const request = async (uri, method, params, apiKey, apiSecret) => {
   const message = constructMessage(method, params)
   const headers = getHeaders(apiKey, apiSecret, message)
-  const uri = 'https://api.changelly.com'
   const res = await fetch(uri, {
     method: 'POST',
     headers: headers,

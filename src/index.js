@@ -1,11 +1,12 @@
 import { request } from './api'
 
 export class Changelly {
-  constructor(apiKey, apiSecret) {
+  constructor(apiKey, apiSecret, uri) {
     if (!apiKey) throw Error('Missing api-key')
     if (!apiSecret) throw Error('Missing api-secret')
     this.apiKey = apiKey
     this.apiSecret = apiSecret
+    this.uri = uri || 'https://api.changelly.com'
   }
 
   /**
@@ -157,7 +158,7 @@ export class Changelly {
    * @returns {Promise<any>}
    */
   async postAPI(method, params={}) {
-    return await request(method, params, this.apiKey, this.apiSecret)
+    return await request(this.uri, method, params, this.apiKey, this.apiSecret)
   }
 
 }
