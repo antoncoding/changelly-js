@@ -80,8 +80,6 @@ export class Changelly {
 
   /**
    * Returns fix rate for target pairs associate with rateId that can be used for 30 seconds
-   * @param {Array<{from:string, to:string, amountFrom:string}>} pairs
-   * @returns {Promise<Array<{ id:string, rate:string, from:string, to:string, amountFrom:string, amountTo:string }>>}
    */
   async getFixRateForAmount(pairs: Array<PairWithAmount>): Promise<Array<FixRateWithAmount>> {
     return await this.postAPI('getFixRateForAmount', pairs)
