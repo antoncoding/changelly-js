@@ -70,6 +70,8 @@ export type FloatTransaction = {
   apiExtraFee: string;
   changellyFee: string;
   payinExtraId: string | null;
+  payoutExtraId: string | null;
+  refundExtraId: string | null;
   amountExpectedFrom: string;
   status: string;
   currencyFrom: string;
@@ -88,6 +90,8 @@ export type FixTransaction = {
   apiExtraFee: string;
   changellyFee: string;
   payinExtraId: string | null;
+  payoutExtraId: string | null;
+  refundExtraId: string | null;
   amountExpectedFrom: string;
   status: string;
   currencyFrom: string;
