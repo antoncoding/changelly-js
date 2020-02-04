@@ -1,8 +1,6 @@
 # ChangellyJS
 
-Unofficial Javascript SDK for [Changelly](https://changelly.com/?ref_id=oz145mh990w1b4wr) cryptocurrency exchange service API.
-
-For more detail about this API, visit the [official document](https://old.changelly.com/developers).
+Unofficial Javascript SDK for [Changelly](https://changelly.com/?ref_id=oz145mh990w1b4wr) cryptocurrency exchange service API.For more detail about the API, visit the [official document](https://old.changelly.com/developers).
 
 [<img src="https://i.imgur.com/GN2626g.png">](https://changelly.com/?ref_id=oz145mh990w1b4wr)
 
