@@ -128,7 +128,11 @@ export class Changelly {
   ): Promise<FixTransaction> {
     if (amountFrom && amountTo) throw new Error('Only specify one of amountTo or amountFrom');
     const params = amountFrom
-      ? { from, to, address, amountFrom, rateId, refundAddress, extraId, refundExtraId }
+      ? this.uri.includes('changehero') 
+        // Changehero use param amount instead of amount From
+        ?  { from, to, address, amount: amountFrom, rateId, refundAddress, extraId, refundExtraId } 
+        :  { from, to, address, amountFrom, rateId, refundAddress, extraId, refundExtraId }
+
       : { from, to, address, amountTo, rateId, refundAddress, extraId, refundExtraId };
     return await this.postAPI('createFixTransaction', params);
   }
